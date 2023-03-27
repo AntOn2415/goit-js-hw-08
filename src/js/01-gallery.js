@@ -5,11 +5,13 @@ import { galleryItems } from './gallery-items';
 console.log(galleryItems);
 
 import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 const galleryEl = document.querySelector(".gallery");
 const galleryMarkup = createGalleryMarkup(galleryItems);
 
 galleryEl.insertAdjacentHTML("beforeend", galleryMarkup);
+galleryEl.style.listStyle = "none";
 
 function createGalleryMarkup(galleryItems) {
   return galleryItems
@@ -22,7 +24,7 @@ function createGalleryMarkup(galleryItems) {
     })
     .join("");
 }
-const lightbox = new SimpleLightbox(".gallery a", {
+new SimpleLightbox(".gallery a", {
   captions: true,
   captionsData: "alt",
   captionDelay: 250,
