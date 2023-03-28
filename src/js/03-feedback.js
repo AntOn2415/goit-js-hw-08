@@ -13,8 +13,7 @@ const refs = {
 refs.form.addEventListener('submit', onFormSubmit);
 refs.textarea.addEventListener('input', throttle(onTextareaImput, 500));
 
-
-savedDataForm();
+populateForm();
 
 function onFormSubmit (e) {
   // зберігае дані після перезавантаження сторінки
@@ -38,12 +37,14 @@ refs.form.addEventListener('input', e => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 });
 
-function savedDataForm() {
+function populateForm() {
   const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
   
   if (savedData) {
-  formData['email'] = savedData.email;
-  formData['message'] = savedData.message;
+    formData['email'] = savedData.email;
+    formData['message'] = savedData.message;
+    refs.input.value = savedData.email;
+    refs.textarea.value = savedData.message;
   }
-  };
+  }
 
